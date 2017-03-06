@@ -4,7 +4,7 @@ class Account
 
   INITIAL_BALANCE = 0
 
-  def initialize
+  def initialize(transaction_log: TransactionLog)
     @balance = INITIAL_BALANCE
   end
 
