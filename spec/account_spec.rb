@@ -10,10 +10,10 @@ describe Account do
 
   describe '#initialize' do
     subject(:account_class) { described_class }
-    it 'can accept a transaction_log keyword argument' do
-      expect{ account_class.new(transaction_log: transaction_log_class) }.not_to raise_error
+    it 'can accept a transaction_log_class keyword argument' do
+      expect{ account_class.new(transaction_log_class: transaction_log_class) }.not_to raise_error
     end
-    it 'can initialize without the transaction_log keyword argument' do
+    it 'can initialize without the transaction_log_class keyword argument' do
       expect{ account_class.new }.not_to raise_error
     end
   end
