@@ -3,7 +3,7 @@ require_relative '../lib/transaction_log'
 
 describe Account do
 
-  let(:transaction_log) { class_double('TransactionLog') }
+  let(:transaction_log_class) { class_double('TransactionLog') }
   subject(:account) { described_class.new }
   let(:initial_balance) { described_class::INITIAL_BALANCE }
 
@@ -11,7 +11,7 @@ describe Account do
   describe '#initialize' do
     subject(:account_class) { described_class }
     it 'can accept a transaction_log keyword argument' do
-      expect{ account_class.new(transaction_log: transaction_log) }.not_to raise_error
+      expect{ account_class.new(transaction_log: transaction_log_class) }.not_to raise_error
     end
     it 'can initialize without the transaction_log keyword argument' do
       expect{ account_class.new }.not_to raise_error
