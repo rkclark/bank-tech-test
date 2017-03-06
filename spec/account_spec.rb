@@ -1,12 +1,14 @@
 require_relative '../lib/account'
 require_relative '../lib/transaction_log'
+require_relative '../lib/transaction'
 
 describe Account do
 
   let(:transaction_log_class) { TransactionLog }
+  let(:transaction) { instance_double('Transaction') }
   subject(:account) { described_class.new }
   let(:initial_balance) { described_class::INITIAL_BALANCE }
-
+  let(:min_balance) { described_class::MIN_BALANCE }
 
   describe '#initialize' do
     subject(:account_class) { described_class }
@@ -29,6 +31,29 @@ describe Account do
     it 'initialises with a balance of zero' do
       expect(account.balance).to eq(initial_balance)
     end
+  end
+
+  describe '#add_transaction' do
+    let(:transaction_value_error) { "Withdrawl rejected: would exceed your account's minimum balance." }
+    it 'raises error if withdrawl exceeds minimum balance' do
+      allow(transaction).to receive(:amount) { (min_balance - 1) }
+      expect{ account.add_transaction(transaction) }.to raise_error(transaction_value_error)
+    end
+    context 'Deposit transaction (positive amount)' do
+      it 'increases balance by transaction amount' do
+        allow(transaction).to receive(:amount) { 5 }
+        expect{ account.add_transaction(transaction) }.to change{ account.balance }.by 5
+      end
+    end
+    context 'Withdrawl transaction (negative amount)' do
+      it 'increases balance by transaction amount' do
+        allow(transaction).to receive(:amount) { 5 }
+        account.add_transaction(transaction)
+        allow(transaction).to receive(:amount) { -4 }
+        expect{ account.add_transaction(transaction) }.to change{ account.balance }.by -4
+      end
+    end
+
   end
 
 end
