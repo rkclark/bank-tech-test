@@ -60,7 +60,7 @@ I then designed the following Domain Model using [Ardoq](https://ardoq.com/):
 
 ![Domain Model](https://raw.githubusercontent.com/rkclark/bank-tech-test/master/img/domain_model.png)
 
-Next I followed a TDDD approach to implement the required features according to my design and the specification.
+Next I followed a TDD approach to implement the required features according to my design and the specification.
 
 ### Installation and Usage
 
