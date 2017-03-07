@@ -6,7 +6,7 @@ class Transaction
 
   def initialize(amount:)
     validate_amount(amount)
-    @amount = amount
+    @amount = amount.to_f
     @date = DateTime.now
   end
 

@@ -41,8 +41,8 @@ describe Transaction do
   end
 
   describe '#amount' do
-    it 'returns the amount passed at initialization' do
-      expect(transaction.amount).to eq amount
+    it 'returns the amount passed at initialization, converted to float' do
+      expect(transaction.amount.to_s).to eq amount.to_f.to_s
     end
   end
 
