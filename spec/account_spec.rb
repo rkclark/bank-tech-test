@@ -18,12 +18,9 @@ describe Account do
       allow(transaction_log_class).to receive(:new) { transaction_log }
     end
     subject(:account_class) { described_class }
-    describe 'transaction_log_class keyword argument' do
-      it 'accepts a transaction_log_class keyword argument' do
-        expect{ account_class.new(transaction_log_class: transaction_log_class) }.not_to raise_error
-      end
+    it 'accepts a transaction_log_class keyword argument' do
+      expect{ account_class.new(transaction_log_class: transaction_log_class) }.not_to raise_error
     end
-
   end
 
   context 'initialized' do
@@ -48,7 +45,7 @@ describe Account do
         allow(transaction).to receive(:amount) { (min_balance - 1) }
         expect{ account.add_transaction(transaction) }.to raise_error(transaction_value_error)
       end
-      it 'calls log_transaction on the transaction log' do
+      it 'calls log on the transaction log' do
         allow(transaction).to receive(:amount) { 5 }
         expect(transaction_log).to receive(:log).with(transaction)
         account.add_transaction(transaction)
