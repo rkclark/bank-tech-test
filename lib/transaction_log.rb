@@ -6,7 +6,11 @@ class TransactionLog
   end
 
   def log(transaction)
-
+    self.transactions << transaction
   end
+
+  private
+
+  attr_writer :transactions
 
 end
