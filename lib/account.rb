@@ -12,7 +12,7 @@ class Account
   end
 
   def add_transaction(transaction)
-    message = "Withdrawl rejected: would exceed your account's minimum balance."
+    message = "Withdrawal rejected: would exceed your account's minimum balance."
     raise message if balance + transaction.amount < MIN_BALANCE
     @balance += transaction.amount
   end

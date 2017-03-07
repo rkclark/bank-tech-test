@@ -34,8 +34,8 @@ describe Account do
   end
 
   describe '#add_transaction' do
-    let(:transaction_value_error) { "Withdrawl rejected: would exceed your account's minimum balance." }
-    it 'raises error if withdrawl exceeds minimum balance' do
+    let(:transaction_value_error) { "Withdrawal rejected: would exceed your account's minimum balance." }
+    it 'raises error if withdrawal exceeds minimum balance' do
       allow(transaction).to receive(:amount) { (min_balance - 1) }
       expect{ account.add_transaction(transaction) }.to raise_error(transaction_value_error)
     end
@@ -45,7 +45,7 @@ describe Account do
         expect{ account.add_transaction(transaction) }.to change{ account.balance }.by 5
       end
     end
-    context 'Withdrawl transaction (negative amount)' do
+    context 'Withdrawal transaction (negative amount)' do
       it 'increases balance by transaction amount' do
         allow(transaction).to receive(:amount) { 5 }
         account.add_transaction(transaction)
