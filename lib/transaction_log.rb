@@ -5,4 +5,8 @@ class TransactionLog
     @transactions = []
   end
 
+  def log(transaction)
+
+  end
+
 end
