@@ -1,6 +1,6 @@
 class Account
 
-  attr_reader :balance
+  attr_reader :balance, :transaction_log 
 
   INITIAL_BALANCE = 0
   MIN_BALANCE = 0
@@ -19,7 +19,7 @@ class Account
 
   private
 
-  attr_reader :transaction_log
+
   attr_writer :balance
 
   def update_balance(amount)
